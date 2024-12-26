@@ -29,6 +29,7 @@ public class Coupon implements Serializable {
 
     @NotNull
     private Flight flightUsedON;
+    public Coupon() {}
 
     public Coupon(Integer id, User user, int discountPercentage, String expirationDate, Flight flightUsedON) {
         this.id = id;
