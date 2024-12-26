@@ -1,5 +1,7 @@
 package com.example.Project.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,4 +26,10 @@ public class Airport implements Serializable {
 
     @NotNull
     private int nrOfTerminals;
+
+    public Airport() {}
+    @JsonCreator
+    public Airport(@JsonProperty("id") int id) {
+        this.id = id;
+    }
 }
