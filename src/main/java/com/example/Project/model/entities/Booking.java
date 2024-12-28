@@ -16,20 +16,29 @@ import java.util.List;
 public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotNull
+    @ManyToOne
+    @JoinColumn(name = "flight_id", referencedColumnName = "id")
     private Flight flight;
 
     @NotNull
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private User client;
 
     @NotNull
     private int seat;
 
     @NotNull
-    private int row_seat;
+    private int rowSeat;
 
     @NotNull
     private int nrOfBaggages;
+
+    @NotNull
+    private int basePrice;
+
+    private int finalPrice;
 }
