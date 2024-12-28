@@ -16,9 +16,11 @@ import java.util.List;
 public class Coupon implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotNull
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @NotNull
@@ -27,15 +29,7 @@ public class Coupon implements Serializable {
     @NotNull
     private String expirationDate;
 
-    @NotNull
-    private Flight flightUsedON;
-    public Coupon() {}
-
-    public Coupon(Integer id, User user, int discountPercentage, String expirationDate, Flight flightUsedON) {
-        this.id = id;
-        this.user = user;
-        this.discountPercentage = discountPercentage;
-        this.expirationDate = expirationDate;
-        this.flightUsedON = null;
-    }
+    @ManyToOne
+    @JoinColumn(name = "flight_used_on_id", referencedColumnName = "id")
+    private Flight flight;
 }
