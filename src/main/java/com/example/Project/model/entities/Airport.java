@@ -32,4 +32,11 @@ public class Airport implements Serializable {
     public Airport(@JsonProperty("id") int id) {
         this.id = id;
     }
+
+    public Airport(int id, String name, String cityName, int nrOfTerminals) {
+        this.id = id;
+        this.name = name;
+        this.cityName = cityName;
+        this.nrOfTerminals = nrOfTerminals;
+    }
 }

@@ -37,7 +37,7 @@ public class AirportService {
         existingAirport.setCityName(airport.getCityName());
         existingAirport.setNrOfTerminals(airport.getNrOfTerminals());
 
-        return airportRepository.save(airport);
+        return airportRepository.save(existingAirport);
     }
     public void deleteAirport(final int id) {
         airportRepository.deleteById(id);

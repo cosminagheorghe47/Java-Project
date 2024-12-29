@@ -41,7 +41,7 @@ public class AircraftService {
         existingAircraft.setWeight(aircraft.getWeight());
         existingAircraft.setWingSpan(aircraft.getWingSpan());
 
-        return aircraftRepository.save(aircraft);
+        return aircraftRepository.save(existingAircraft);
     }
     public void deleteAircraft(final int id) {
          aircraftRepository.deleteById(id);
