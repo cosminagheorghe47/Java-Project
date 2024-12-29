@@ -32,4 +32,16 @@ public class Aircraft implements Serializable {
     private int weight;
 
     private int wingSpan;
+
+    public Aircraft() {}
+
+    public Aircraft(int id, String name, int nrOfSeatsEconomy, int nrOfSeatsFirstClass, int maxSpeed, int weight, int wingSpan) {
+        this.id = id;
+        this.name = name;
+        this.nrOfSeatsEconomy = nrOfSeatsEconomy;
+        this.nrOfSeatsFirstClass = nrOfSeatsFirstClass;
+        this.maxSpeed = maxSpeed;
+        this.weight = weight;
+        this.wingSpan = wingSpan;
+    }
 }
