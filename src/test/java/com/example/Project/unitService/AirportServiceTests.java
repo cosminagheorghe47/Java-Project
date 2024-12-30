@@ -2,7 +2,11 @@ package com.example.Project.unitService;
 
 import com.example.Project.model.entities.Airport;
 import com.example.Project.repositories.AirportRepository;
+import com.example.Project.repositories.BookingRepository;
+import com.example.Project.repositories.CouponRepository;
 import com.example.Project.services.AirportService;
+import com.example.Project.services.BookingService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +19,14 @@ import static org.mockito.Mockito.*;
 
 public class AirportServiceTests {
 
-    private final AirportRepository airportRepository = mock(AirportRepository.class);
-    private final AirportService airportService = new AirportService(airportRepository);
+    private AirportRepository airportRepository;
+    private AirportService airportService ;
+
+    @BeforeEach
+    void setUp() {
+        airportRepository = mock(AirportRepository.class);
+        airportService = new AirportService(airportRepository);
+    }
 
     @Test
     @DisplayName("Find airports by city - valid city")

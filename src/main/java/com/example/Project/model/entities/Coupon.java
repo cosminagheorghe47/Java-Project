@@ -32,4 +32,15 @@ public class Coupon implements Serializable {
     @ManyToOne
     @JoinColumn(name = "flight_used_on_id", referencedColumnName = "id")
     private Flight flight;
+
+    public Coupon(int id, User user, int discountPercentage, String expirationDate, Flight flight) {
+        this.id = id;
+        this.user = user;
+        this.discountPercentage = discountPercentage;
+        this.expirationDate = expirationDate;
+        this.flight = flight;
+    }
+
+    public Coupon() {
+    }
 }
