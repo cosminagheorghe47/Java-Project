@@ -3,7 +3,10 @@ package com.example.Project.unitService;
 
 import com.example.Project.model.entities.Aircraft;
 import com.example.Project.repositories.AircraftRepository;
+import com.example.Project.repositories.AirportRepository;
 import com.example.Project.services.AircraftService;
+import com.example.Project.services.AirportService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +19,14 @@ import static org.mockito.Mockito.*;
 
 public class AircraftServiceTests {
 
-    private final AircraftRepository aircraftRepository = mock(AircraftRepository.class);
-    private final AircraftService aircraftService = new AircraftService(aircraftRepository);
+    private AircraftRepository aircraftRepository;
+    private AircraftService aircraftService ;
+
+    @BeforeEach
+    void setUp() {
+        aircraftRepository = mock(AircraftRepository.class);
+        aircraftService = new AircraftService(aircraftRepository);
+    }
 
     @Test
     @DisplayName("Find aircraft by name - valid name")

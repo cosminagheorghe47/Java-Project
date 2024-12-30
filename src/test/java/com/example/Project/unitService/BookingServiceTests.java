@@ -6,6 +6,8 @@ import com.example.Project.model.entities.User;
 import com.example.Project.repositories.BookingRepository;
 import com.example.Project.repositories.CouponRepository;
 import com.example.Project.services.BookingService;
+import com.example.Project.services.CouponService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +19,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BookingServiceTests {
 
-    private final BookingRepository bookingRepository = mock(BookingRepository.class);
-    private final CouponRepository couponRepository = mock(CouponRepository.class);
-    private final BookingService bookingService = new BookingService(bookingRepository, couponRepository);
+    private BookingRepository bookingRepository;
+    private CouponRepository couponRepository;
+    private BookingService bookingService ;
+
+    @BeforeEach
+    void setUp() {
+        bookingRepository = mock(BookingRepository.class);
+        couponRepository = mock(CouponRepository.class);
+        bookingService = new BookingService(bookingRepository, couponRepository);
+    }
+
 
     @Test
     @DisplayName("Create booking with coupon applied")
