@@ -19,7 +19,7 @@ public class AircraftController {
     private final AircraftService aircraftService;
 
     @GetMapping("/name/{name}")
-    @PreAuthorize("hasRole('CLIENT')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Aircraft> getAircrafts(@PathVariable final String name) {
         return aircraftService.findAircraftByName(name);
     }
@@ -33,15 +33,18 @@ public class AircraftController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMIN')")
     public Aircraft createAircraft(@RequestBody  final Aircraft aircraft) {
         return aircraftService.createAircraft(aircraft);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Aircraft updateAircraft(@PathVariable final int id,@RequestBody  final Aircraft aircraft) {
         return aircraftService.updateAircraft(id, aircraft);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteAircraft(@PathVariable final int id) {
          aircraftService.deleteAircraft(id);
     }

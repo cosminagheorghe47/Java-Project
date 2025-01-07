@@ -5,6 +5,7 @@ import com.example.Project.model.entities.Airport;
 import com.example.Project.services.AircraftService;
 import com.example.Project.services.AirportService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,15 +32,18 @@ public class AirportController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMIN')")
     public Airport createAirport(@RequestBody  final Airport airport) {
         return airportService.createAirport(airport);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Airport updateAirport(@PathVariable final int id,@RequestBody  final Airport airport) {
         return airportService.updateAirport(id, airport);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteAirport(@PathVariable final int id) {
         airportService.deleteAirport(id);
     }

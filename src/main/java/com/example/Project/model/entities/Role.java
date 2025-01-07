@@ -6,16 +6,15 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "roles")
+@Setter
+@Getter
 public class Role {
 
-    @Setter
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Setter
-    @Getter
     private String name;
 
     @ManyToOne
