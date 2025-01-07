@@ -16,9 +16,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public Optional<User> findByAuthToken(String token) {
+        return userRepository.findByAuthToken(token);
     }
 
     public boolean validateCredentials(String username, String password) {
@@ -31,6 +34,18 @@ public class UserService {
             throw new IllegalArgumentException("Username already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        user.setRole(User.Role.CLIENT);
+        return userRepository.save(user);
+    }
+
+    public User updateUser(User user) {
+        System.out.println("aici3");
+        return userRepository.save(user);
+    }
+
+    public User setRole(User user, User.Role role) {
+        user.setRole(role);
         return userRepository.save(user);
     }
 }

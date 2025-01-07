@@ -5,6 +5,7 @@ import com.example.Project.model.entities.Airport;
 import com.example.Project.services.AircraftService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class AircraftController {
     private final AircraftService aircraftService;
 
     @GetMapping("/name/{name}")
+    @PreAuthorize("hasRole('CLIENT')")
     public List<Aircraft> getAircrafts(@PathVariable final String name) {
         return aircraftService.findAircraftByName(name);
     }

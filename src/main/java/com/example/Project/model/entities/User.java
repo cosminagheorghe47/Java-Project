@@ -28,4 +28,15 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "person_data_id", referencedColumnName = "id")
     private Person personData;
+
+    private String authToken;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        ADMIN,
+        CLIENT
+    }
 }
