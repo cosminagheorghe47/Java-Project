@@ -63,7 +63,7 @@ public class AircraftServiceTests {
     void testFindAircraftById_Valid() {
         int id = 1;
         Aircraft aircraft = new Aircraft(id, "Boeing 747", 300, 50, 900, 180000, 60);
-        //aircraft.setId(id);
+
 
         when(aircraftRepository.findById(id))
                 .thenReturn(Optional.of(aircraft));

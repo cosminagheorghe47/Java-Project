@@ -3,6 +3,7 @@ package com.example.Project.controllers;
 import com.example.Project.model.entities.Person;
 import com.example.Project.services.PersonService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,13 @@ public class PersonController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Person getPerson(@PathVariable final int id) {
-        return personService.findPersonById(id);
+    public ResponseEntity<Person> getPerson(@PathVariable final int id) {
+        Person person = personService.findPersonById(id);
+        if (person != null) {
+            return ResponseEntity.ok(person);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/")
@@ -35,19 +41,27 @@ public class PersonController {
     @PostMapping("/")
     @PreAuthorize("hasRole('CLIENT')")
     public Person createPerson(@RequestBody final Person person) {
-        System.out.println(person.toString()+"AICIIIIIIIII");
         return personService.createPerson(person);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('CLIENT')")
-    public Person updatePerson(@PathVariable final int id, @RequestBody final Person person) {
-        return personService.updatePerson(id, person);
+    public ResponseEntity<Person> updatePerson(@PathVariable final int id, @RequestBody final Person person) {
+        Person updatedPerson = personService.updatePerson(id, person);
+        if (updatedPerson != null) {
+            return ResponseEntity.ok(updatedPerson);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('CLIENT')")
-    public void deletePerson(@PathVariable final int id) {
-        personService.deletePerson(id);
+    public ResponseEntity<Void> deletePerson(@PathVariable final int id) {
+        if (personService.deletePerson(id)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.Project.controllers;
 
 import com.example.Project.model.entities.Flight;
 import com.example.Project.services.FlightService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/flights")
 public class FlightController {
@@ -28,7 +30,12 @@ public class FlightController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Flight> updateFlight(@PathVariable Integer id, @RequestBody Flight flightDetails) {
-        return ResponseEntity.ok(flightService.updateFlight(id, flightDetails));
+        try {
+            Flight updatedFlight = flightService.updateFlight(id, flightDetails);
+            return ResponseEntity.ok(updatedFlight);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(null);
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -48,6 +48,5 @@ public class Person implements Serializable {
                 ", CNP='" + cnp + '\'' +
                 '}';
     }
-//    @OneToMany(mappedBy = "personData")
-//    private List<User> users = new ArrayList<>();
+
 }

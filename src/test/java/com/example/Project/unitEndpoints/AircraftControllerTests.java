@@ -1,20 +1,17 @@
 package com.example.Project.unitEndpoints;
 
-
 import com.example.Project.controllers.AircraftController;
 import com.example.Project.model.entities.Aircraft;
 import com.example.Project.services.AircraftService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.http.HttpStatus.OK;
 
 public class AircraftControllerTests {
 
@@ -25,8 +22,7 @@ public class AircraftControllerTests {
     @DisplayName("Get aircrafts by name")
     void testGetAircraftsByName() {
         String name = "Boeing 747";
-        Aircraft aircraft = new Aircraft();
-        aircraft.setName(name);
+        Aircraft aircraft = new Aircraft(1, name, 300, 50, 900, 180000, 60);
 
         when(aircraftService.findAircraftByName(name))
                 .thenReturn(Arrays.asList(aircraft));
@@ -43,8 +39,7 @@ public class AircraftControllerTests {
     @DisplayName("Get aircraft by ID")
     void testGetAircraftById() {
         int id = 1;
-        Aircraft aircraft = new Aircraft();
-        aircraft.setId(id);
+        Aircraft aircraft = new Aircraft(id, "Boeing 747", 300, 50, 900, 180000, 60);
 
         when(aircraftService.findAircraftById(id))
                 .thenReturn(aircraft);
@@ -53,14 +48,15 @@ public class AircraftControllerTests {
 
         assertNotNull(result);
         assertEquals(id, result.getId());
+        assertEquals("Boeing 747", result.getName());
         verify(aircraftService, times(1)).findAircraftById(id);
     }
 
     @Test
     @DisplayName("Get all aircrafts")
     void testGetAllAircrafts() {
-        Aircraft aircraft1 = new Aircraft();
-        Aircraft aircraft2 = new Aircraft();
+        Aircraft aircraft1 = new Aircraft(1, "Boeing 747", 300, 50, 900, 180000, 60);
+        Aircraft aircraft2 = new Aircraft(2, "Boeing 748", 320, 55, 920, 190000, 62);
 
         when(aircraftService.getAllAircrafts())
                 .thenReturn(Arrays.asList(aircraft1, aircraft2));
@@ -69,13 +65,15 @@ public class AircraftControllerTests {
 
         assertNotNull(result);
         assertEquals(2, result.size());
+        assertEquals("Boeing 747", result.get(0).getName());
+        assertEquals("Boeing 748", result.get(1).getName());
         verify(aircraftService, times(1)).getAllAircrafts();
     }
 
     @Test
     @DisplayName("Create aircraft")
     void testCreateAircraft() {
-        Aircraft aircraft = new Aircraft();
+        Aircraft aircraft = new Aircraft(1, "Boeing 747", 300, 50, 900, 180000, 60);
 
         when(aircraftService.createAircraft(aircraft))
                 .thenReturn(aircraft);
@@ -83,6 +81,7 @@ public class AircraftControllerTests {
         Aircraft result = aircraftController.createAircraft(aircraft);
 
         assertNotNull(result);
+        assertEquals("Boeing 747", result.getName());
         verify(aircraftService, times(1)).createAircraft(aircraft);
     }
 
@@ -90,15 +89,17 @@ public class AircraftControllerTests {
     @DisplayName("Update aircraft")
     void testUpdateAircraft() {
         int id = 1;
-        Aircraft aircraft = new Aircraft();
+        Aircraft existingAircraft = new Aircraft(id, "Boeing 747", 300, 50, 900, 180000, 60);
+        Aircraft updatedAircraft = new Aircraft(id, "Boeing 748", 320, 55, 920, 190000, 62);
 
-        when(aircraftService.updateAircraft(id, aircraft))
-                .thenReturn(aircraft);
+        when(aircraftService.updateAircraft(id, updatedAircraft))
+                .thenReturn(updatedAircraft);
 
-        Aircraft result = aircraftController.updateAircraft(id, aircraft);
+        Aircraft result = aircraftController.updateAircraft(id, updatedAircraft);
 
         assertNotNull(result);
-        verify(aircraftService, times(1)).updateAircraft(id, aircraft);
+        assertEquals("Boeing 748", result.getName());
+        verify(aircraftService, times(1)).updateAircraft(id, updatedAircraft);
     }
 
     @Test
@@ -113,4 +114,3 @@ public class AircraftControllerTests {
         verify(aircraftService, times(1)).deleteAircraft(id);
     }
 }
-

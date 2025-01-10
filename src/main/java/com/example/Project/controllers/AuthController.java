@@ -17,9 +17,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         boolean isValid = userService.validateCredentials(username, password);
-        System.out.println("aici1");
         if (isValid) {
-            System.out.println("aici2");
+            System.out.println("Test");
             String token = UUID.randomUUID().toString();
             User user = userService.findByUsername(username).get();
             user.setAuthToken(token);

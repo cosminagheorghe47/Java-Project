@@ -40,7 +40,6 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        System.out.println("aici3");
         return userRepository.save(user);
     }
 

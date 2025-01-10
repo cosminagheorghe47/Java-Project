@@ -47,7 +47,12 @@ public class PersonService {
         return personRepository.save(existingPerson);
     }
 
-    public void deletePerson(final int id) {
-        personRepository.deleteById(id);
+    public boolean deletePerson(final int id) {
+        try {
+            personRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
