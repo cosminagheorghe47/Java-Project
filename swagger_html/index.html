@@ -1,0 +1,2261 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Airport App</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Airport App</h1>
+    <div class="app-desc">Airport App</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/COSMI472/test/1.0.0</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Aircraft">Aircraft</a></h4>
+  <ul>
+  <li><a href="#createAircraft"><code><span class="http-method">post</span> /api/v1/aircraft/</code></a></li>
+  <li><a href="#deleteAircraft"><code><span class="http-method">delete</span> /api/v1/aircraft/{id}</code></a></li>
+  <li><a href="#getAircraftById"><code><span class="http-method">get</span> /api/v1/aircraft/{id}</code></a></li>
+  <li><a href="#getAircraftsByName"><code><span class="http-method">get</span> /api/v1/aircraft/name/{name}</code></a></li>
+  <li><a href="#getAllAircrafts"><code><span class="http-method">get</span> /api/v1/aircraft/</code></a></li>
+  <li><a href="#updateAircraft"><code><span class="http-method">put</span> /api/v1/aircraft/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Airport">Airport</a></h4>
+  <ul>
+  <li><a href="#createAirport"><code><span class="http-method">post</span> /api/v1/airport/</code></a></li>
+  <li><a href="#deleteAirport"><code><span class="http-method">delete</span> /api/v1/airport/{id}</code></a></li>
+  <li><a href="#getAirportById"><code><span class="http-method">get</span> /api/v1/airport/{id}</code></a></li>
+  <li><a href="#getAirportsByCity"><code><span class="http-method">get</span> /api/v1/airport/city/{name}</code></a></li>
+  <li><a href="#getAllAirports"><code><span class="http-method">get</span> /api/v1/airport/</code></a></li>
+  <li><a href="#updateAirport"><code><span class="http-method">put</span> /api/v1/airport/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Auth">Auth</a></h4>
+  <ul>
+  <li><a href="#loginUser"><code><span class="http-method">post</span> /api/v1/auth/login</code></a></li>
+  <li><a href="#registerUser"><code><span class="http-method">post</span> /api/v1/auth/register</code></a></li>
+  </ul>
+  <h4><a href="#Booking">Booking</a></h4>
+  <ul>
+  <li><a href="#createBooking"><code><span class="http-method">post</span> /api/v1/bookings</code></a></li>
+  <li><a href="#getAllBookings"><code><span class="http-method">get</span> /api/v1/bookings</code></a></li>
+  </ul>
+  <h4><a href="#Coupon">Coupon</a></h4>
+  <ul>
+  <li><a href="#deleteCoupon"><code><span class="http-method">delete</span> /api/v1/coupons/{id}</code></a></li>
+  <li><a href="#getCouponsForUser"><code><span class="http-method">get</span> /api/v1/coupons/user/{userId}</code></a></li>
+  </ul>
+  <h4><a href="#Flight">Flight</a></h4>
+  <ul>
+  <li><a href="#addFlight"><code><span class="http-method">post</span> /api/v1/flights</code></a></li>
+  <li><a href="#deleteFlight"><code><span class="http-method">delete</span> /api/v1/flights/{id}</code></a></li>
+  <li><a href="#getAllFlights"><code><span class="http-method">get</span> /api/v1/flights</code></a></li>
+  <li><a href="#searchFlights"><code><span class="http-method">get</span> /api/v1/flights/search</code></a></li>
+  <li><a href="#updateFlight"><code><span class="http-method">put</span> /api/v1/flights/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Person">Person</a></h4>
+  <ul>
+  <li><a href="#createPerson"><code><span class="http-method">post</span> /api/v1/person/</code></a></li>
+  <li><a href="#deletePerson"><code><span class="http-method">delete</span> /api/v1/person/{id}</code></a></li>
+  <li><a href="#getAllPersons"><code><span class="http-method">get</span> /api/v1/person/</code></a></li>
+  <li><a href="#getPersonById"><code><span class="http-method">get</span> /api/v1/person/{id}</code></a></li>
+  <li><a href="#getPersonsByNationality"><code><span class="http-method">get</span> /api/v1/person/nationality/{nationality}</code></a></li>
+  <li><a href="#updatePerson"><code><span class="http-method">put</span> /api/v1/person/{id}</code></a></li>
+  </ul>
+
+  <h1><a name="Aircraft">Aircraft</a></h1>
+  <div class="method"><a name="createAircraft"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/aircraft/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">createAircraft</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Aircraft">Aircraft</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Aircraft object to be created </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Aircraft">Aircraft</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Aircraft successfully created.
+        <a href="#Aircraft">Aircraft</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteAircraft"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/v1/aircraft/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteAircraft</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the aircraft to be deleted. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Aircraft successfully deleted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAircraftById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/aircraft/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAircraftById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the aircraft. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Aircraft">Aircraft</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Aircraft details.
+        <a href="#Aircraft">Aircraft</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAircraftsByName"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/aircraft/name/{name}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAircraftsByName</span>)</div>
+    <div class="method-notes">Retrieve aircrafts by name</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the aircraft. </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Aircraft">Aircraft</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+}, {
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of aircrafts matching the given name.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllAircrafts"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/aircraft/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAllAircrafts</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Aircraft">Aircraft</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+}, {
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of all aircrafts.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateAircraft"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/v1/aircraft/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">updateAircraft</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the aircraft to be updated. format: int32</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Aircraft">Aircraft</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Aircraft object with updated details </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Aircraft">Aircraft</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nrOfSeatsFirstClass" : 50,
+  "wingSpan" : 60,
+  "name" : "Boeing 747",
+  "weight" : 180000,
+  "id" : 1,
+  "maxSpeed" : 900,
+  "nrOfSeatsEconomy" : 200
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Aircraft successfully updated.
+        <a href="#Aircraft">Aircraft</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Airport">Airport</a></h1>
+  <div class="method"><a name="createAirport"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/airport/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">createAirport</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Airport">Airport</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Airport object to be created </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Airport">Airport</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Airport successfully created.
+        <a href="#Airport">Airport</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteAirport"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/v1/airport/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteAirport</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the airport to be deleted. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Airport successfully deleted.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAirportById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/airport/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAirportById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the airport. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Airport">Airport</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Airport details.
+        <a href="#Airport">Airport</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAirportsByCity"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/airport/city/{name}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAirportsByCity</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the city. </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Airport">Airport</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+}, {
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of airports in the specified city.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllAirports"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/airport/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAllAirports</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Airport">Airport</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+}, {
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of all airports.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateAirport"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/v1/airport/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">updateAirport</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the airport to be updated. format: int32</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Airport">Airport</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Airport object with updated details </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Airport">Airport</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "cityName" : "New York",
+  "nrOfTerminals" : 6,
+  "name" : "JFK Airport",
+  "id" : 1
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Airport successfully updated.
+        <a href="#Airport">Airport</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Auth">Auth</a></h1>
+  <div class="method"><a name="loginUser"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/auth/login</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">loginUser</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">username (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Username of the user </div>      <div class="param">password (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Password of the user </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful login and token generation.
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Invalid credentials.
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal server error.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="registerUser"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/auth/register</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">registerUser</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#User">User</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; User object to be registered </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    User registered successfully.
+        <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Bad request due to invalid input or duplicate user.
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal server error.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Booking">Booking</a></h1>
+  <div class="method"><a name="createBooking"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/bookings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">createBooking</span>)</div>
+    <div class="method-notes">Create a new booking</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Booking">Booking</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Booking object to be created </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Booking">Booking</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "seat" : 12,
+  "flight" : {
+    "code" : "FL123",
+    "pilot" : {
+      "lastName" : "Doe",
+      "firstName" : "John",
+      "gender" : "Male",
+      "nationality" : "Romanian",
+      "CNP" : "1234567890123",
+      "id" : 1,
+      "age" : 30
+    },
+    "soldSeatsEconomy" : 100,
+    "soldSeatsFirstClass" : 20,
+    "departureAirport" : {
+      "cityName" : "New York",
+      "nrOfTerminals" : 6,
+      "name" : "JFK Airport",
+      "id" : 1
+    },
+    "distance" : 1500,
+    "aircraft" : {
+      "nrOfSeatsFirstClass" : 50,
+      "wingSpan" : 60,
+      "name" : "Boeing 747",
+      "weight" : 180000,
+      "id" : 1,
+      "maxSpeed" : 900,
+      "nrOfSeatsEconomy" : 200
+    },
+    "id" : 1,
+    "departureDate" : "2025-01-15T10:30:00Z",
+    "arrivalDate" : "2025-01-15T14:45:00Z"
+  },
+  "client" : {
+    "personDataId" : 101,
+    "password" : "Password",
+    "role" : "CLIENT",
+    "authToken" : "authToken",
+    "id" : 1,
+    "username" : "Maria"
+  },
+  "finalPrice" : 180,
+  "id" : 1,
+  "rowSeat" : 5,
+  "nrOfBaggages" : 2,
+  "basePrice" : 150
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Booking successfully created.
+        <a href="#Booking">Booking</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllBookings"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/bookings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAllBookings</span>)</div>
+    <div class="method-notes">Retrieve all bookings</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Booking">Booking</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "seat" : 12,
+  "flight" : {
+    "code" : "FL123",
+    "pilot" : {
+      "lastName" : "Doe",
+      "firstName" : "John",
+      "gender" : "Male",
+      "nationality" : "Romanian",
+      "CNP" : "1234567890123",
+      "id" : 1,
+      "age" : 30
+    },
+    "soldSeatsEconomy" : 100,
+    "soldSeatsFirstClass" : 20,
+    "departureAirport" : {
+      "cityName" : "New York",
+      "nrOfTerminals" : 6,
+      "name" : "JFK Airport",
+      "id" : 1
+    },
+    "distance" : 1500,
+    "aircraft" : {
+      "nrOfSeatsFirstClass" : 50,
+      "wingSpan" : 60,
+      "name" : "Boeing 747",
+      "weight" : 180000,
+      "id" : 1,
+      "maxSpeed" : 900,
+      "nrOfSeatsEconomy" : 200
+    },
+    "id" : 1,
+    "departureDate" : "2025-01-15T10:30:00Z",
+    "arrivalDate" : "2025-01-15T14:45:00Z"
+  },
+  "client" : {
+    "personDataId" : 101,
+    "password" : "Password",
+    "role" : "CLIENT",
+    "authToken" : "authToken",
+    "id" : 1,
+    "username" : "Maria"
+  },
+  "finalPrice" : 180,
+  "id" : 1,
+  "rowSeat" : 5,
+  "nrOfBaggages" : 2,
+  "basePrice" : 150
+}, {
+  "seat" : 12,
+  "flight" : {
+    "code" : "FL123",
+    "pilot" : {
+      "lastName" : "Doe",
+      "firstName" : "John",
+      "gender" : "Male",
+      "nationality" : "Romanian",
+      "CNP" : "1234567890123",
+      "id" : 1,
+      "age" : 30
+    },
+    "soldSeatsEconomy" : 100,
+    "soldSeatsFirstClass" : 20,
+    "departureAirport" : {
+      "cityName" : "New York",
+      "nrOfTerminals" : 6,
+      "name" : "JFK Airport",
+      "id" : 1
+    },
+    "distance" : 1500,
+    "aircraft" : {
+      "nrOfSeatsFirstClass" : 50,
+      "wingSpan" : 60,
+      "name" : "Boeing 747",
+      "weight" : 180000,
+      "id" : 1,
+      "maxSpeed" : 900,
+      "nrOfSeatsEconomy" : 200
+    },
+    "id" : 1,
+    "departureDate" : "2025-01-15T10:30:00Z",
+    "arrivalDate" : "2025-01-15T14:45:00Z"
+  },
+  "client" : {
+    "personDataId" : 101,
+    "password" : "Password",
+    "role" : "CLIENT",
+    "authToken" : "authToken",
+    "id" : 1,
+    "username" : "Maria"
+  },
+  "finalPrice" : 180,
+  "id" : 1,
+  "rowSeat" : 5,
+  "nrOfBaggages" : 2,
+  "basePrice" : 150
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of all bookings.
+        
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Coupon">Coupon</a></h1>
+  <div class="method"><a name="deleteCoupon"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/v1/coupons/{id}</code></pre></div>
+    <div class="method-summary">Delete a coupon (<span class="nickname">deleteCoupon</span>)</div>
+    <div class="method-notes">Deletes a specific coupon by its ID.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the coupon to be deleted. </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Coupon successfully deleted.
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    Forbidden access for the current role.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Coupon not found.
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal server error.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCouponsForUser"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/coupons/user/{userId}</code></pre></div>
+    <div class="method-summary">Retrieve coupons for a specific user (<span class="nickname">getCouponsForUser</span>)</div>
+    <div class="method-notes">Fetches a list of coupons assigned to a particular user based on user ID and optional filters.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">userId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the user whose coupons are to be fetched. </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter parameter for retrieving specific coupons. </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Coupon">Coupon</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "discountPercentage" : 20,
+  "flight" : {
+    "code" : "FL123",
+    "pilot" : {
+      "lastName" : "Doe",
+      "firstName" : "John",
+      "gender" : "Male",
+      "nationality" : "Romanian",
+      "CNP" : "1234567890123",
+      "id" : 1,
+      "age" : 30
+    },
+    "soldSeatsEconomy" : 100,
+    "soldSeatsFirstClass" : 20,
+    "departureAirport" : {
+      "cityName" : "New York",
+      "nrOfTerminals" : 6,
+      "name" : "JFK Airport",
+      "id" : 1
+    },
+    "distance" : 1500,
+    "aircraft" : {
+      "nrOfSeatsFirstClass" : 50,
+      "wingSpan" : 60,
+      "name" : "Boeing 747",
+      "weight" : 180000,
+      "id" : 1,
+      "maxSpeed" : 900,
+      "nrOfSeatsEconomy" : 200
+    },
+    "id" : 1,
+    "departureDate" : "2025-01-15T10:30:00Z",
+    "arrivalDate" : "2025-01-15T14:45:00Z"
+  },
+  "id" : 1,
+  "user" : {
+    "personDataId" : 101,
+    "password" : "Password",
+    "role" : "CLIENT",
+    "authToken" : "authToken",
+    "id" : 1,
+    "username" : "Maria"
+  },
+  "expirationDate" : "2025-12-31T00:00:00.000+00:00"
+}, {
+  "discountPercentage" : 20,
+  "flight" : {
+    "code" : "FL123",
+    "pilot" : {
+      "lastName" : "Doe",
+      "firstName" : "John",
+      "gender" : "Male",
+      "nationality" : "Romanian",
+      "CNP" : "1234567890123",
+      "id" : 1,
+      "age" : 30
+    },
+    "soldSeatsEconomy" : 100,
+    "soldSeatsFirstClass" : 20,
+    "departureAirport" : {
+      "cityName" : "New York",
+      "nrOfTerminals" : 6,
+      "name" : "JFK Airport",
+      "id" : 1
+    },
+    "distance" : 1500,
+    "aircraft" : {
+      "nrOfSeatsFirstClass" : 50,
+      "wingSpan" : 60,
+      "name" : "Boeing 747",
+      "weight" : 180000,
+      "id" : 1,
+      "maxSpeed" : 900,
+      "nrOfSeatsEconomy" : 200
+    },
+    "id" : 1,
+    "departureDate" : "2025-01-15T10:30:00Z",
+    "arrivalDate" : "2025-01-15T14:45:00Z"
+  },
+  "id" : 1,
+  "user" : {
+    "personDataId" : 101,
+    "password" : "Password",
+    "role" : "CLIENT",
+    "authToken" : "authToken",
+    "id" : 1,
+    "username" : "Maria"
+  },
+  "expirationDate" : "2025-12-31T00:00:00.000+00:00"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of coupons associated with the user.
+        
+    <h4 class="field-label">403</h4>
+    Forbidden access for the current role.
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal server error.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Flight">Flight</a></h1>
+  <div class="method"><a name="addFlight"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/flights</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">addFlight</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Flight">Flight</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Flight object to be added </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Flight">Flight</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Flight successfully added.
+        <a href="#Flight">Flight</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteFlight"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/v1/flights/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deleteFlight</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the flight to be deleted. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Flight successfully deleted.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Flight not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllFlights"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/flights</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAllFlights</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Flight">Flight</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+}, {
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of all flights.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="searchFlights"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/flights/search</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">searchFlights</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">arrivalDate (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Date of arrival format: date</div>      <div class="param">departureDate (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Date of departure format: date</div>      <div class="param">arrivalAirport (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of the arrival airport </div>      <div class="param">departureAirport (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of the departure airport </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Flight">Flight</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+}, {
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of flights matching the search criteria.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateFlight"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/v1/flights/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">updateFlight</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the flight to be updated. format: int32</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Flight">Flight</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Flight object with updated details </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Flight">Flight</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "code" : "FL123",
+  "pilot" : {
+    "lastName" : "Doe",
+    "firstName" : "John",
+    "gender" : "Male",
+    "nationality" : "Romanian",
+    "CNP" : "1234567890123",
+    "id" : 1,
+    "age" : 30
+  },
+  "soldSeatsEconomy" : 100,
+  "soldSeatsFirstClass" : 20,
+  "departureAirport" : {
+    "cityName" : "New York",
+    "nrOfTerminals" : 6,
+    "name" : "JFK Airport",
+    "id" : 1
+  },
+  "distance" : 1500,
+  "aircraft" : {
+    "nrOfSeatsFirstClass" : 50,
+    "wingSpan" : 60,
+    "name" : "Boeing 747",
+    "weight" : 180000,
+    "id" : 1,
+    "maxSpeed" : 900,
+    "nrOfSeatsEconomy" : 200
+  },
+  "id" : 1,
+  "departureDate" : "2025-01-15T10:30:00Z",
+  "arrivalDate" : "2025-01-15T14:45:00Z"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Flight successfully updated.
+        <a href="#Flight">Flight</a>
+    <h4 class="field-label">404</h4>
+    Flight not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Person">Person</a></h1>
+  <div class="method"><a name="createPerson"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/person/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">createPerson</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Person">Person</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Person object to be created </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Person">Person</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Person successfully created.
+        <a href="#Person">Person</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletePerson"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/v1/person/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deletePerson</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the person to be deleted. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Person successfully deleted.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Person not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllPersons"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/person/</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAllPersons</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Person">Person</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+}, {
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of all persons.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPersonById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/person/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPersonById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the person. format: int32</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Person">Person</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Details of the person.
+        <a href="#Person">Person</a>
+    <h4 class="field-label">404</h4>
+    Person not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPersonsByNationality"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/person/nationality/{nationality}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getPersonsByNationality</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">nationality (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Nationality of the person. </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Person">Person</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+}, {
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A list of persons matching the given nationality.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updatePerson"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/v1/person/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">updatePerson</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the person to be updated. format: int32</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Person">Person</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Person object with updated details </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Person">Person</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "lastName" : "Doe",
+  "firstName" : "John",
+  "gender" : "Male",
+  "nationality" : "Romanian",
+  "CNP" : "1234567890123",
+  "id" : 1,
+  "age" : 30
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Person successfully updated.
+        <a href="#Person">Person</a>
+    <h4 class="field-label">404</h4>
+    Person not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Aircraft"><code>Aircraft</code></a></li>
+    <li><a href="#Airport"><code>Airport</code></a></li>
+    <li><a href="#Booking"><code>Booking</code></a></li>
+    <li><a href="#Coupon"><code>Coupon</code></a></li>
+    <li><a href="#Flight"><code>Flight</code></a></li>
+    <li><a href="#Person"><code>Person</code></a></li>
+    <li><a href="#User"><code>User</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Aircraft"><code>Aircraft</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the aircraft. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the aircraft. </div>
+          <div class="param-desc"><span class="param-type">example: Boeing 747</span></div>
+<div class="param">nrOfSeatsEconomy (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of seats in the economy class. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 200</span></div>
+<div class="param">nrOfSeatsFirstClass (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of seats in the first class. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 50</span></div>
+<div class="param">maxSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum speed of the aircraft in km/h. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 900</span></div>
+<div class="param">weight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Weight of the aircraft in kilograms. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 180000</span></div>
+<div class="param">wingSpan (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Wingspan of the aircraft in meters. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 60</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Airport"><code>Airport</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the airport. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the airport. </div>
+          <div class="param-desc"><span class="param-type">example: JFK Airport</span></div>
+<div class="param">cityName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the city where the airport is located. </div>
+          <div class="param-desc"><span class="param-type">example: New York</span></div>
+<div class="param">nrOfTerminals (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of terminals in the airport. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 6</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Booking"><code>Booking</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the booking. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">flight (optional)</div><div class="param-desc"><span class="param-type"><a href="#Flight">Flight</a></span>  </div>
+<div class="param">client (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">seat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Seat number for the booking. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 12</span></div>
+<div class="param">rowSeat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Row seat number for the booking. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 5</span></div>
+<div class="param">nrOfBaggages (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of baggages for the booking. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 2</span></div>
+<div class="param">basePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Base price of the booking. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 150</span></div>
+<div class="param">finalPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Final price after charges. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 180</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Coupon"><code>Coupon</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the coupon. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#User">User</a></span>  </div>
+<div class="param">discountPercentage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Discount percentage provided by the coupon. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 20</span></div>
+<div class="param">expirationDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Expiration date of the coupon. format: date</div>
+          <div class="param-desc"><span class="param-type">example: Wed Dec 31 00:00:00 GMT 2025</span></div>
+<div class="param">flight (optional)</div><div class="param-desc"><span class="param-type"><a href="#Flight">Flight</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Flight"><code>Flight</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the flight. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique code for the flight. </div>
+          <div class="param-desc"><span class="param-type">example: FL123</span></div>
+<div class="param">departureDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> Departure date and time of the flight. format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2025-01-15T10:30Z</span></div>
+<div class="param">arrivalDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> Arrival date and time of the flight. format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2025-01-15T14:45Z</span></div>
+<div class="param">departureAirport (optional)</div><div class="param-desc"><span class="param-type"><a href="#Airport">Airport</a></span>  </div>
+<div class="param">arrivalAirport (optional)</div><div class="param-desc"><span class="param-type"><a href="#Airport">Airport</a></span>  </div>
+<div class="param">pilot (optional)</div><div class="param-desc"><span class="param-type"><a href="#Person">Person</a></span>  </div>
+<div class="param">distance (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Distance of the flight in kilometers. </div>
+          <div class="param-desc"><span class="param-type">example: 1500</span></div>
+<div class="param">soldSeatsEconomy (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of economy seats sold. </div>
+          <div class="param-desc"><span class="param-type">example: 100</span></div>
+<div class="param">soldSeatsFirstClass (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of first-class seats sold. </div>
+          <div class="param-desc"><span class="param-type">example: 20</span></div>
+<div class="param">aircraft (optional)</div><div class="param-desc"><span class="param-type"><a href="#Aircraft">Aircraft</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Person"><code>Person</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the person. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">lastName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The last name of the person. </div>
+          <div class="param-desc"><span class="param-type">example: Doe</span></div>
+<div class="param">firstName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The first name of the person. </div>
+          <div class="param-desc"><span class="param-type">example: John</span></div>
+<div class="param">gender (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The gender of the person. </div>
+          <div class="param-desc"><span class="param-type">example: Male</span></div>
+<div class="param">age (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The age of the person. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 30</span></div>
+<div class="param">nationality (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The nationality of the person. </div>
+          <div class="param-desc"><span class="param-type">example: Romanian</span></div>
+<div class="param">CNP (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The CNP number of the person. </div>
+          <div class="param-desc"><span class="param-type">example: 1234567890123</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unique identifier for the user. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username of the user. Must be between 4 and 20 characters. </div>
+          <div class="param-desc"><span class="param-type">example: Maria</span></div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Encrypted password of the user. Must be at least 8 characters long. </div>
+          <div class="param-desc"><span class="param-type">example: Password</span></div>
+<div class="param">personDataId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Identifier for the associated person data. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 101</span></div>
+<div class="param">role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Role of the user in the system. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">ADMIN</div><div class="param-enum">CLIENT</div>
+          <div class="param-desc"><span class="param-type">example: CLIENT</span></div>
+<div class="param">authToken (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Authentication token for the user. </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

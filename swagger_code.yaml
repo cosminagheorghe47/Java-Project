@@ -1,0 +1,911 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/COSMI472/proj_airline/1.0.0
+info:
+  version: "1.0.0"
+  title: home-iot-api
+  description: The API for the EatBacon IOT project
+paths:
+  /api/v1/aircraft/name/{name}:
+    get:
+      tags:
+        - Aircraft
+      description: Retrieve aircrafts by name
+      operationId: getAircraftsByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Name of the aircraft.
+          schema:
+            type: string
+          example: "Boeing 737"
+      responses:
+        '200':
+          description: A list of aircrafts matching the given name.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aircraft'
+
+  /api/v1/aircraft/{id}:
+    get:
+      tags:
+        - Aircraft
+      operationId: getAircraftById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the aircraft.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '200':
+          description: Aircraft details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aircraft'
+
+    put:
+      tags:
+        - Aircraft
+      operationId: updateAircraft
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the aircraft to be updated.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      requestBody:
+        description: Aircraft object with updated details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aircraft'
+      responses:
+        '200':
+          description: Aircraft successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aircraft'
+
+    delete:
+      tags:
+        - Aircraft
+      operationId: deleteAircraft
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the aircraft to be deleted.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '204':
+          description: Aircraft successfully deleted.
+
+  /api/v1/aircraft/:
+    get:
+      tags:
+        - Aircraft
+      operationId: getAllAircrafts
+      responses:
+        '200':
+          description: A list of all aircrafts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aircraft'
+
+    post:
+      tags:
+        - Aircraft
+      operationId: createAircraft
+      requestBody:
+        description: Aircraft object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aircraft'
+      responses:
+        '201':
+          description: Aircraft successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aircraft'
+
+  /api/v1/airport/city/{name}:
+    get:
+      tags:
+        - Airport
+      operationId: getAirportsByCity
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Name of the city.
+          schema:
+            type: string
+          example: "New York"
+      responses:
+        '200':
+          description: A list of airports in the specified city.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+
+  /api/v1/airport/{id}:
+    get:
+      tags:
+        - Airport
+      operationId: getAirportById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the airport.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '200':
+          description: Airport details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Airport'
+
+    put:
+      tags:
+        - Airport
+      operationId: updateAirport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the airport to be updated.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      requestBody:
+        description: Airport object with updated details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Airport'
+      responses:
+        '200':
+          description: Airport successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Airport'
+
+    delete:
+      tags:
+        - Airport
+      operationId: deleteAirport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the airport to be deleted.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '204':
+          description: Airport successfully deleted.
+
+  /api/v1/airport/:
+    get:
+      tags:
+        - Airport
+      operationId: getAllAirports
+      responses:
+        '200':
+          description: A list of all airports.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+
+    post:
+      tags:
+        - Airport
+      operationId: createAirport
+      requestBody:
+        description: Airport object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Airport'
+      responses:
+        '201':
+          description: Airport successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Airport'
+
+  /api/v1/auth/login:
+    post:
+      tags:
+        - Auth
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          required: true
+          description: Username of the user
+          schema:
+            type: string
+          example: "Maria"
+        - name: password
+          in: query
+          required: true
+          description: Password of the user
+          schema:
+            type: string
+          example: "Password123"
+      responses:
+        '200':
+          description: Successful login and token generation.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Invalid credentials.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal server error.
+
+  /api/v1/auth/register:
+    post:
+      tags:
+        - Auth
+      operationId: registerUser
+      requestBody:
+        description: User object to be registered
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User registered successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad request due to invalid input or duplicate user.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal server error.
+
+  /api/v1/person/nationality/{nationality}:
+    get:
+      tags:
+        - Person
+      operationId: getPersonsByNationality
+      parameters:
+        - name: nationality
+          in: path
+          required: true
+          description: Nationality of the person.
+          schema:
+            type: string
+          example: "Romanian"
+      responses:
+        '200':
+          description: A list of persons matching the given nationality.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+
+
+  /api/v1/person/:
+    get:
+      tags:
+        - Person
+      operationId: getAllPersons
+      responses:
+        '200':
+          description: A list of all persons.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+
+    post:
+      tags:
+        - Person
+      operationId: createPerson
+      requestBody:
+        description: Person object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '201':
+          description: Person successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+
+  /api/v1/person/{id}:
+    get:
+      tags:
+        - Person
+      operationId: getPersonById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the person.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '200':
+          description: Details of the person.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found.
+
+    put:
+      tags:
+        - Person
+      operationId: updatePerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the person to be updated.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      requestBody:
+        description: Person object with updated details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: Person successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found.
+
+    delete:
+      tags:
+        - Person
+      operationId: deletePerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the person to be deleted.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '204':
+          description: Person successfully deleted.
+        '404':
+          description: Person not found.
+
+  /api/v1/flights:
+    get:
+      tags:
+        - Flight
+      operationId: getAllFlights
+      responses:
+        '200':
+          description: A list of all flights.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Flight'
+
+    post:
+      tags:
+        - Flight
+      operationId: addFlight
+      requestBody:
+        description: Flight object to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flight'
+      responses:
+        '200':
+          description: Flight successfully added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+
+  /api/v1/flights/{id}:
+    put:
+      tags:
+        - Flight
+      operationId: updateFlight
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the flight to be updated.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      requestBody:
+        description: Flight object with updated details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flight'
+      responses:
+        '200':
+          description: Flight successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        '404':
+          description: Flight not found.
+
+    delete:
+      tags:
+        - Flight
+      operationId: deleteFlight
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the flight to be deleted.
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '204':
+          description: Flight successfully deleted.
+        '404':
+          description: Flight not found.
+
+  /api/v1/flights/search:
+    get:
+      tags:
+        - Flight
+      operationId: searchFlights
+      parameters:
+        - name: arrivalDate
+          in: query
+          required: false
+          description: Date of arrival
+          schema:
+            type: string
+            format: date
+          example: "2025-01-11"
+        - name: departureDate
+          in: query
+          required: false
+          description: Date of departure
+          schema:
+            type: string
+            format: date
+          example: "2025-01-10"
+        - name: arrivalAirport
+          in: query
+          required: false
+          description: ID of the arrival airport
+          schema:
+            type: integer
+          example: 101
+        - name: departureAirport
+          in: query
+          required: false
+          description: ID of the departure airport
+          schema:
+            type: integer
+          example: 202
+      responses:
+        '200':
+          description: A list of flights matching the search criteria.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Flight'
+
+  /api/v1/bookings:
+    post:
+      tags:
+        - Booking
+      description: Create a new booking
+      operationId: createBooking
+      requestBody:
+        description: Booking object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: Booking successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+
+    get:
+      tags:
+        - Booking
+      description: Retrieve all bookings
+      operationId: getAllBookings
+      responses:
+        '200':
+          description: A list of all bookings.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+
+  /api/v1/coupons/user/{userId}:
+    get:
+      tags:
+        - Coupon
+      summary: Retrieve coupons for a specific user
+      description: Fetches a list of coupons assigned to a particular user based on user ID and optional filters.
+      operationId: getCouponsForUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user whose coupons are to be fetched.
+          schema:
+            type: integer
+          example: 123
+        - name: filter
+          in: query
+          required: true
+          description: Filter parameter for retrieving specific coupons.
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: A list of coupons associated with the user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Coupon'
+        '403':
+          description: Forbidden access for the current role.
+        '500':
+          description: Internal server error.
+
+  /api/v1/coupons/{id}:
+    delete:
+      tags:
+        - Coupon
+      summary: Delete a coupon
+      description: Deletes a specific coupon by its ID.
+      operationId: deleteCoupon
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the coupon to be deleted.
+          schema:
+            type: integer
+          example: 456
+      responses:
+        '204':
+          description: Coupon successfully deleted.
+        '403':
+          description: Forbidden access for the current role.
+        '404':
+          description: Coupon not found.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+
+    Aircraft:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the aircraft.
+          example: 1
+        name:
+          type: string
+          description: Name of the aircraft.
+          example: "Boeing 747"
+        nrOfSeatsEconomy:
+          type: integer
+          format: int32
+          description: Number of seats in the economy class.
+          example: 200
+        nrOfSeatsFirstClass:
+          type: integer
+          format: int32
+          description: Number of seats in the first class.
+          example: 50
+        maxSpeed:
+          type: integer
+          format: int32
+          description: Maximum speed of the aircraft in km/h.
+          example: 900
+        weight:
+          type: integer
+          format: int32
+          description: Weight of the aircraft in kilograms.
+          example: 180000
+        wingSpan:
+          type: integer
+          format: int32
+          description: Wingspan of the aircraft in meters.
+          example: 60
+    Airport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the airport.
+          example: 1
+        name:
+          type: string
+          description: Name of the airport.
+          example: "JFK Airport"
+        cityName:
+          type: string
+          description: Name of the city where the airport is located.
+          example: "New York"
+        nrOfTerminals:
+          type: integer
+          format: int32
+          description: Number of terminals in the airport.
+          example: 6
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the user.
+          example: 1
+        username:
+          type: string
+          description: Username of the user. Must be between 4 and 20 characters.
+          example: "Maria"
+        password:
+          type: string
+          description: Encrypted password of the user. Must be at least 8 characters long.
+          example: "Password"
+        personDataId:
+          type: integer
+          format: int32
+          description: Identifier for the associated person data.
+          example: 101
+        role:
+          type: string
+          description: Role of the user in the system.
+          enum:
+            - ADMIN
+            - CLIENT
+          example: "CLIENT"
+        authToken:
+          type: string
+          nullable: true
+          description: Authentication token for the user.
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the person.
+          example: 1
+        lastName:
+          type: string
+          description: The last name of the person.
+          example: Doe
+        firstName:
+          type: string
+          description: The first name of the person.
+          example: John
+        gender:
+          type: string
+          description: The gender of the person.
+          example: Male
+        age:
+          type: integer
+          format: int32
+          description: The age of the person.
+          example: 30
+        nationality:
+          type: string
+          description: The nationality of the person.
+          example: Romanian
+        CNP:
+          type: string
+          description: The CNP number of the person.
+          example: 1234567890123
+
+    Flight:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the flight.
+          example: 1
+        code:
+          type: string
+          description: Unique code for the flight.
+          example: FL123
+        departureDate:
+          type: string
+          format: date-time
+          description: Departure date and time of the flight.
+          example: 2025-01-15T10:30:00Z
+        arrivalDate:
+          type: string
+          format: date-time
+          description: Arrival date and time of the flight.
+          example: 2025-01-15T14:45:00Z
+        departureAirport:
+          $ref: '#/components/schemas/Airport'
+        arrivalAirport:
+          $ref: '#/components/schemas/Airport'
+        pilot:
+          $ref: '#/components/schemas/Person'
+        distance:
+          type: integer
+          description: Distance of the flight in kilometers.
+          example: 1500
+        soldSeatsEconomy:
+          type: integer
+          description: Number of economy seats sold.
+          example: 100
+        soldSeatsFirstClass:
+          type: integer
+          description: Number of first-class seats sold.
+          example: 20
+        aircraft:
+          $ref: '#/components/schemas/Aircraft'
+    Booking:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the booking.
+          example: 1
+        flight:
+          $ref: '#/components/schemas/Flight'
+        client:
+          $ref: '#/components/schemas/User'
+        seat:
+          type: integer
+          format: int32
+          description: Seat number for the booking.
+          example: 12
+        rowSeat:
+          type: integer
+          format: int32
+          description: Row seat number for the booking.
+          example: 5
+        nrOfBaggages:
+          type: integer
+          format: int32
+          description: Number of baggages for the booking.
+          example: 2
+        basePrice:
+          type: integer
+          format: int32
+          description: Base price of the booking.
+          example: 150
+        finalPrice:
+          type: integer
+          format: int32
+          description: Final price after charges.
+          example: 180
+
+    Coupon:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the coupon.
+          example: 1
+        user:
+          $ref: '#/components/schemas/User'
+        discountPercentage:
+          type: integer
+          format: int32
+          description: Discount percentage provided by the coupon.
+          example: 20
+        expirationDate:
+          type: string
+          format: date
+          description: Expiration date of the coupon.
+          example: "2025-12-31"
+        flight:
+          $ref: '#/components/schemas/Flight'
+          description: Flight the coupon was used on, if applicable.
